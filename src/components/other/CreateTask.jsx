@@ -16,7 +16,16 @@ const CreateTask = () => {
     const submitHandler = (e) => {
         e.preventDefault()
 
-        setNewTask({ taskTitle, taskDescription, taskDate, category, active: false, newTask: true, failed: false, completed: false })
+        setNewTask({
+            taskTitle,
+            taskDescription,
+            taskDate,
+            category,
+            active: false,
+            newTask: true,
+            failed: false,
+            completed: false
+        })
 
         const data = userData
 
@@ -26,74 +35,117 @@ const CreateTask = () => {
                 elem.taskCounts.newTask = elem.taskCounts.newTask + 1
             }
         })
+
         setUserData(data)
-        console.log(data);
 
         setTaskTitle('')
         setCategory('')
         setAsignTo('')
         setTaskDate('')
         setTaskDescription('')
-
     }
 
     return (
-        <div className='p-5 bg-[#1c1c1c] mt-5 rounded'>
-            <form onSubmit={(e) => {
-                submitHandler(e)
-            }}
+        <div className='p-8 mt-6 rounded-3xl bg-gradient-to-br from-[#0a0a0a] via-[#111827] to-[#1e293b] border border-zinc-800 shadow-[0_0_30px_rgba(59,130,246,0.15)]'>
+
+            <h2 className='text-3xl font-bold text-white mb-8'>
+                Create New Task
+            </h2>
+
+            <form
+                onSubmit={(e) => {
+                    submitHandler(e)
+                }}
                 className='flex flex-wrap w-full items-start justify-between'
             >
-                <div className='w-1/2'>
-                    <div>
-                        <h3 className='text-sm text-gray-300 mb-0.5'>Task Title</h3>
+
+                <div className='w-1/2 pr-6'>
+
+                    <div className='mb-5'>
+                        <h3 className='text-sm text-gray-400 mb-2'>
+                            Task Title
+                        </h3>
                         <input
                             value={taskTitle}
                             onChange={(e) => {
                                 setTaskTitle(e.target.value)
                             }}
-                            className='text-sm py-1 px-2 w-4/5 rounded outline-none bg-transparent border-[1px] border-gray-400 mb-4' type="text" placeholder='Make a UI design'
+                            className='w-full py-3 px-4 rounded-xl bg-[#111827] border border-zinc-700 text-white focus:outline-none focus:border-blue-500 transition-all'
+                            type="text"
+                            placeholder='Make a UI Design'
                         />
                     </div>
-                    <div>
-                        <h3 className='text-sm text-gray-300 mb-0.5'>Date</h3>
+
+                    <div className='mb-5'>
+                        <h3 className='text-sm text-gray-400 mb-2'>
+                            Due Date
+                        </h3>
                         <input
                             value={taskDate}
                             onChange={(e) => {
                                 setTaskDate(e.target.value)
                             }}
-                            className='text-sm py-1 px-2 w-4/5 rounded outline-none bg-transparent border-[1px] border-gray-400 mb-4' type="date" />
+                            className='w-full py-3 px-4 rounded-xl bg-[#111827] border border-zinc-700 text-white focus:outline-none focus:border-blue-500 transition-all'
+                            type="date"
+                        />
                     </div>
-                    <div>
-                        <h3 className='text-sm text-gray-300 mb-0.5'>Asign to</h3>
+
+                    <div className='mb-5'>
+                        <h3 className='text-sm text-gray-400 mb-2'>
+                            Assign To
+                        </h3>
                         <input
                             value={asignTo}
                             onChange={(e) => {
                                 setAsignTo(e.target.value)
                             }}
-                            className='text-sm py-1 px-2 w-4/5 rounded outline-none bg-transparent border-[1px] border-gray-400 mb-4' type="text" placeholder='employee name' />
+                            className='w-full py-3 px-4 rounded-xl bg-[#111827] border border-zinc-700 text-white focus:outline-none focus:border-blue-500 transition-all'
+                            type="text"
+                            placeholder='Employee Name'
+                        />
                     </div>
+
                     <div>
-                        <h3 className='text-sm text-gray-300 mb-0.5'>Category</h3>
+                        <h3 className='text-sm text-gray-400 mb-2'>
+                            Category
+                        </h3>
                         <input
                             value={category}
                             onChange={(e) => {
                                 setCategory(e.target.value)
                             }}
-                            className='text-sm py-1 px-2 w-4/5 rounded outline-none bg-transparent border-[1px] border-gray-400 mb-4' type="text" placeholder='design, dev, etc' />
+                            className='w-full py-3 px-4 rounded-xl bg-[#111827] border border-zinc-700 text-white focus:outline-none focus:border-blue-500 transition-all'
+                            type="text"
+                            placeholder='Design, Development, Testing'
+                        />
                     </div>
+
                 </div>
 
-                <div className='w-2/5 flex flex-col items-start'>
-                    <h3 className='text-sm text-gray-300 mb-0.5'>Description</h3>
-                    <textarea value={taskDescription}
+                <div className='w-[45%] flex flex-col'>
+
+                    <h3 className='text-sm text-gray-400 mb-2'>
+                        Description
+                    </h3>
+
+                    <textarea
+                        value={taskDescription}
                         onChange={(e) => {
                             setTaskDescription(e.target.value)
-                        }} className='w-full h-44 text-sm py-2 px-4 rounded outline-none bg-transparent border-[1px] border-gray-400' name="" id=""></textarea>
-                    <button className='bg-emerald-500 py-3 hover:bg-emerald-600 px-5 rounded text-sm mt-4 w-full'>Create Task</button>
+                        }}
+                        className='w-full h-56 py-4 px-4 rounded-xl bg-[#111827] border border-zinc-700 text-white resize-none focus:outline-none focus:border-blue-500 transition-all'
+                    ></textarea>
+
+                    <button
+                        className='mt-6 bg-gradient-to-r from-blue-700 via-blue-600 to-red-600 hover:from-blue-600 hover:to-red-500 text-white font-semibold py-3 rounded-xl shadow-lg transition-all duration-300 hover:scale-[1.02]'
+                    >
+                        Create Task
+                    </button>
+
                 </div>
 
             </form>
+
         </div>
     )
 }
